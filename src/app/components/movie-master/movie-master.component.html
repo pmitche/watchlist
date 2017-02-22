@@ -1,0 +1,36 @@
+<md-tab-group (selectChange)="onChange($event)">
+  <md-tab 
+  	label="{{endpoint.text}}" 
+  	*ngFor="let endpoint of endpoints"
+  	md-ripple>
+  <h1 style="text-align: center">{{endpoint.text}} movies</h1>
+  </md-tab>
+</md-tab-group>
+
+<div class="grid">
+	<div class="col-3_md-6_sm-12" *ngFor="let movie of movies | paginate: { id: 'server', itemsPerPage: 20, currentPage: p, totalItems: 5000 }">
+		<div class="thecard">
+		    <span class="card-img" (click)="gotoDetail(movie)">
+		        <img src="http://image.tmdb.org/t/p/w300{{movie.backdrop_path}}" *ngIf="movie.backdrop_path !== null">
+		        <img src="http://placehold.it/150x85" alt="user avatar" *ngIf="movie.backdrop_path === null">
+		    </span>
+		    <div class="card-caption">
+		        <span class="like-btn fa fa-film" (click)="showAddedToWatchlist(movie)" *ngIf="auth.authenticated()" color="accent"></span>
+		        <span (click)="gotoDetail(movie)">
+		            <span class="date">{{movie.release_date}}</span>
+		            <h1>{{movie.title}}</h1>
+		            <p>{{movie.overview | slice:0:150}}...</p>
+		        </span>
+		    </div>
+		    <span class="card-outmore" (click)="gotoDetail(movie)">
+		        <h5>Read more</h5>
+		        <i class="outmore-icon fa fa-angle-right"></i>
+		    </span>
+		</div>
+	</div>
+</div>
+
+<div class="has-text-centered">
+    <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+    <pagination-controls (pageChange)="getMoviesWithPage($event, selectedEndpoint.val)" id="server"></pagination-controls>
+</div>

@@ -1,0 +1,15 @@
+<div class="demo-toolbar">
+	<p>
+		<md-toolbar color="primary">
+		  <md-icon class="demo-toolbar-icon">menu</md-icon>
+		  <span><strong> chart</strong>cinema</span>
+
+		  <span class="demo-fill-remaining"></span>
+
+		  <button md-button routerLink="/home" color="accent">Home</button>
+		  <button md-button routerLink="/lists" color="accent">Lists</button>
+		  <button md-raised-button color="accent" (click)="auth.login()" *ngIf="!auth.authenticated()">Sign in</button>
+		  <button md-raised-button color="accent" (click)="auth.logout()" *ngIf="auth.authenticated()">Sign out</button>
+		</md-toolbar>
+	</p>
+</div>

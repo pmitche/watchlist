@@ -1,0 +1,23 @@
+<h1>My watchlist</h1>
+
+<div class="grid">
+	<div class="col-3_md-6_sm-12" *ngFor="let movie of movies">
+		<div class="thecard">
+		    <span class="card-img" (click)="gotoDetail(movie)">
+		        <img src="http://image.tmdb.org/t/p/w300{{movie.backdrop_path}}" *ngIf="movie.backdrop_path !== null">
+		        <img src="http://placehold.it/150x85" alt="user avatar" *ngIf="movie.backdrop_path === null">
+		    </span>
+		    <div class="card-caption">
+		        <span (click)="gotoDetail(movie)">
+		            <span class="date">{{movie.release_date}}</span>
+		            <h1>{{movie.title}}</h1>
+		            <p>{{movie.overview | slice:0:150}}...</p>
+		        </span>
+		    </div>
+		    <span class="card-outmore" (click)="gotoDetail(movie)">
+		        <h5>Read more</h5>
+		        <i class="outmore-icon fa fa-angle-right"></i>
+		    </span>
+		</div>
+	</div>
+</div>

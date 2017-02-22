@@ -1,0 +1,13 @@
+<div *ngIf="movie">
+	<h2 md-display-3>{{movie.title}}</h2>
+	<p>{{movie.overview}}</p>
+	<div><strong>IMDB-ID: </strong>{{movie.id}}</div>
+	<div><strong>Votes: </strong>{{movie.vote_count}}</div>
+	<div><strong>Vote average: </strong>{{movie.vote_average}}</div>
+	<div><strong>Popularity: </strong>{{movie.popularity}}</div>
+	<div><strong>Length: </strong>{{movie.runtime}} minutes</div>
+	<div><strong>Release date: </strong>{{movie.release_date | date}}</div>
+	<div><strong>Genres: </strong><ul><li *ngFor="let genre of movie.genres">{{genre.name}}</li></ul></div>
+	<div><img src="http://image.tmdb.org/t/p/w300{{movie.poster_path}}"></div>
+	<button md-button (click)="goBack()">Back</button>
+</div>
